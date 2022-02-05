@@ -8,7 +8,7 @@ class Storage {
     get() {
         return JSON.parse(this.storage.getItem(this.key))
     }
-    set(value = this.defaultValue) {
+    set(value) {
         this.storage.setItem(this.key, JSON.stringify(value))
     }
     clear() {
@@ -16,13 +16,17 @@ class Storage {
 
     }
     isEmpty() {
-        return (!this.storage.getItem(this.key))
+        return this.storage.getItem(this.key) ? false : true
     }
 
 }
 
 const storageCat = new Storage('cat', 'red')
+
+console.log(storageCat)
 storageCat.set('grey')
-console.log(storageCat.isEmpty())
-storageCat.clear()
-console.log(storageCat.isEmpty())
+// storageCat.clear()
+storageCat.get()
+
+const storageDog = new Storage('dog', 'angry', sessionStorage)
+storageDog.set('very angry')
